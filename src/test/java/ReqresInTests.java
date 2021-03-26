@@ -68,7 +68,6 @@ public class ReqresInTests {
 
         assertThat(users.size(),is(equalTo(0)));
         users = result.path("data.first_name");
-        System.out.println("users :" + users);
         assertThat(users.size(),greaterThan(0));
 
         if(delayedGetListTime != 0L) {
@@ -89,7 +88,6 @@ public class ReqresInTests {
                 .statusCode(201)
                 .extract();
         String newUser = result.path("name");
-        System.out.println("newUser: " + newUser);
 
         assertTrue(data.contains(newUser));
         if(!users.isEmpty())
@@ -116,7 +114,6 @@ public class ReqresInTests {
         String email = result.path("data.email");
         String firstName = result.path("data.first_name");
         String lastName = result.path("data.last_name");
-        System.out.println(firstName + " " + lastName + " " + email);
         assertTrue(email.contains("lindsay.ferguson@reqres.in"));
         assertTrue(firstName.contains("Lindsay"));
         assertTrue(lastName.contains("Ferguson"));
@@ -124,8 +121,6 @@ public class ReqresInTests {
 
     private void compareResults()
     {
-        System.out.println("getListAmount: " + getListAmount + "  time: " + ordinaryGetListTime);
-        System.out.println("delayedResponceAmount: " + delayedResponseAmount + "   time: " + delayedGetListTime);
         assertThat(delayedResponseAmount,is(equalTo(getListAmount)));
         assertThat(delayedGetListTime, greaterThan(ordinaryGetListTime));
     }
